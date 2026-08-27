@@ -151,7 +151,7 @@ section{position:relative}
 
 /* ---------- portfolio preview ---------- */
 .portfolio-preview{text-align:center}
-.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,360px));justify-content:center;gap:1.6rem;margin-top:3rem}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));justify-content:center;gap:1.2rem;margin-top:3rem}
 .portfolio-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-align:left;transition:transform .3s var(--ease),border-color .3s var(--ease)}
 .portfolio-card:hover{transform:translateY(-6px);border-color:rgba(200,162,75,.45)}
 .portfolio-logo-wrap{height:150px;display:flex;align-items:center;justify-content:center;background:#fff}
