@@ -253,7 +253,7 @@ section{position:relative}
 .pe-stats h2{font-size:clamp(1.8rem,3.2vw,2.4rem);margin-bottom:2.5rem}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
 .stat-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:2rem 1rem}
-.stat-number{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;color:var(--gold)}
+.stat-number{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;color:var(--gold);line-height:1;display:flex;align-items:center;justify-content:center;min-height:clamp(1.8rem,3.4vw,2.6rem)}
 .stat-label{color:var(--muted);font-size:.9rem;margin-top:.4rem}
 .pe-focus{text-align:center}
 .pe-focus h2{font-size:clamp(1.8rem,3.2vw,2.4rem);margin-bottom:2.5rem}
@@ -347,3 +347,4 @@ section{position:relative}
 
 /* word-based stat values sit smaller than numerals */
 .stat-pill-num.is-text{font-size:clamp(1.3rem,2.5vw,1.75rem);letter-spacing:.01em;line-height:clamp(2rem,4vw,2.8rem)}
+.stat-number.is-text{font-size:clamp(1.2rem,2.3vw,1.6rem)}
