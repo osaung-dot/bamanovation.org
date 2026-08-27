@@ -5,7 +5,7 @@ they appear automatically on the homepage and the portfolio page:
 
 | File | Company |
 |---|---|
-| `bambite.png` | BamBite |
+| `bambite.jpg` | BamBite |
 | `myint-myint-khin.png` | Myint Myint Khin |
 | `totals.png` | Totals Inc. |
 

@@ -155,7 +155,7 @@ section{position:relative}
 .portfolio-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-align:left;transition:transform .3s var(--ease),border-color .3s var(--ease)}
 .portfolio-card:hover{transform:translateY(-6px);border-color:rgba(200,162,75,.45)}
 .portfolio-logo-wrap{height:150px;display:flex;align-items:center;justify-content:center;background:#fff}
-.portfolio-logo{max-height:74px;width:auto}
+.portfolio-logo{max-height:106px;max-width:82%;width:auto}
 .portfolio-logo-fallback{font-family:'Playfair Display',serif;font-weight:700;font-size:1.6rem;color:#1b3a2d}
 .portfolio-card-body{padding:1.6rem}
 .portfolio-tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(200,162,75,.12);border:1px solid rgba(200,162,75,.25);padding:.3rem .7rem;border-radius:999px;margin-bottom:.9rem}
