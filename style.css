@@ -344,3 +344,6 @@ section{position:relative}
 .form-status.is-error{display:block;background:rgba(147,54,37,.18);border:1px solid rgba(147,54,37,.55);color:#f0a897}
 .subscribe-form .form-status{flex-basis:100%;text-align:center;margin-top:1rem}
 .netlify-form button[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+
+/* word-based stat values sit smaller than numerals */
+.stat-pill-num.is-text{font-size:clamp(1.3rem,2.5vw,1.75rem);letter-spacing:.01em;line-height:clamp(2rem,4vw,2.8rem)}
