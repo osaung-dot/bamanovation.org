@@ -176,11 +176,14 @@
         </div>
         <div class="contact-form reveal">
           <h3>Send Us a Message</h3>
-          <form>
-            <input type="text" placeholder="Your Full Name" required aria-label="Full Name">
-            <input type="email" placeholder="Your Email Address *" required aria-label="Email Address">
-            <textarea placeholder="Tell us about your business and how we can help..." rows="5" aria-label="Message"></textarea>
+          <form class="netlify-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-success="✓ Thank you — your message has been received. We'll be in touch within 24 hours.">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hp-field"><label>Leave this field empty if you are human <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+            <input type="text" name="name" placeholder="Your Full Name *" required aria-label="Full Name">
+            <input type="email" name="email" placeholder="Your Email Address *" required aria-label="Email Address">
+            <textarea name="message" placeholder="Tell us about your business and how we can help..." rows="5" required aria-label="Message"></textarea>
             <button type="submit">Send Message</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -217,7 +220,13 @@
     <div class="container">
       <h3>Stay Ahead of the Market</h3>
       <p>Join our newsletter for the latest trade insights, market news, and growth opportunities.</p>
-      <form class="subscribe-form"><input type="email" placeholder="Email Address" required aria-label="Email Address for Newsletter"><button type="submit">Sign Up</button></form>
+      <form class="subscribe-form netlify-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-success="✓ You're subscribed — thank you for joining.">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p class="hp-field"><label>Leave this field empty if you are human <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <input type="email" name="email" placeholder="Email Address" required aria-label="Email Address for Newsletter">
+        <button type="submit">Sign Up</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -291,6 +300,27 @@
       err.style.display='none';
       const custom=encodeURIComponent(name+' | '+email+' | '+ref);
       window.open('https://www.paypal.com/ncp/payment/ZTCN7HX92ECUW?custom='+custom,'_blank');
+    });
+    // netlify forms — submit inline; without JS the browser posts normally and Netlify still records it
+    document.querySelectorAll('.netlify-form').forEach(function(form){
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var status=form.querySelector('.form-status'),btn=form.querySelector('button[type=submit]'),label=btn.textContent;
+        btn.disabled=true;btn.textContent='Sending…';
+        status.className='form-status';status.textContent='';
+        fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+          .then(function(r){
+            if(!r.ok)throw new Error(r.status);
+            form.reset();
+            status.className='form-status is-success';
+            status.textContent=form.dataset.success||'✓ Thank you — we have received your message.';
+          })
+          .catch(function(){
+            status.className='form-status is-error';
+            status.textContent='⚠ Sorry, that could not be sent. Please email oak@bamanovation.org directly.';
+          })
+          .then(function(){btn.disabled=false;btn.textContent=label});
+      });
     });
   </script>
 </body>

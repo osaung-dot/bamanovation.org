@@ -336,3 +336,11 @@ section{position:relative}
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ---------- form feedback ---------- */
+.hp-field{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.form-status{display:none;margin-top:.9rem;padding:.75rem .95rem;border-radius:var(--radius-sm);font-size:.9rem;line-height:1.5;text-align:left}
+.form-status.is-success{display:block;background:rgba(31,93,58,.18);border:1px solid rgba(31,93,58,.55);color:#8fd6ab}
+.form-status.is-error{display:block;background:rgba(147,54,37,.18);border:1px solid rgba(147,54,37,.55);color:#f0a897}
+.subscribe-form .form-status{flex-basis:100%;text-align:center;margin-top:1rem}
+.netlify-form button[disabled]{opacity:.55;cursor:not-allowed;transform:none}

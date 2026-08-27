@@ -97,7 +97,13 @@
     <div class="container">
       <h3>Subscribe</h3>
       <p>Sign up to hear from us about the latest trade and investment news.</p>
-      <form class="subscribe-form"><input type="email" placeholder="Email Address" aria-label="Email Address"><button type="submit">Sign Up</button></form>
+      <form class="subscribe-form netlify-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-success="✓ You're subscribed — thank you for joining.">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p class="hp-field"><label>Leave this field empty if you are human <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <input type="email" name="email" placeholder="Email Address" required aria-label="Email Address">
+        <button type="submit">Sign Up</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -110,6 +116,27 @@
     toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
     const navbar=document.getElementById('navbar');
     window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>40));
+    // netlify forms — submit inline; without JS the browser posts normally and Netlify still records it
+    document.querySelectorAll('.netlify-form').forEach(function(form){
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var status=form.querySelector('.form-status'),btn=form.querySelector('button[type=submit]'),label=btn.textContent;
+        btn.disabled=true;btn.textContent='Sending…';
+        status.className='form-status';status.textContent='';
+        fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+          .then(function(r){
+            if(!r.ok)throw new Error(r.status);
+            form.reset();
+            status.className='form-status is-success';
+            status.textContent=form.dataset.success||'✓ Thank you — we have received your message.';
+          })
+          .catch(function(){
+            status.className='form-status is-error';
+            status.textContent='⚠ Sorry, that could not be sent. Please email oak@bamanovation.org directly.';
+          })
+          .then(function(){btn.disabled=false;btn.textContent=label});
+      });
+    });
   </script>
 </body>
 </html>
