@@ -19,6 +19,7 @@
   <meta name="twitter:description" content="Empowering business growth through strategic trade, commerce, and private equity solutions in Thailand and beyond.">
   <meta name="twitter:image" content="https://bamanovation.org/og-image.png">
   <title>Bamanovation | Strategic Business Consulting & Private Equity</title>
+  <link rel="canonical" href="https://bamanovation.org/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +35,7 @@
         <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#15171c"/><rect x="3.5" y="3.5" width="57" height="57" rx="11" fill="none" stroke="#c8a24b" stroke-width="1.4" opacity="0.55"/><text x="32" y="45.5" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#c8a24b">B</text></svg>
         <span class="logo-word"><b>B</b>amanovation</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
@@ -197,7 +198,7 @@
           <p>Ready to elevate your business? Our team is here to help. Reach out today and start a conversation about how Bamanovation can help you achieve your goals.</p>
           <div class="contact-details">
             <p><strong>Bamanovation Ltd</strong></p>
-            <p>🕑 Open Today: 09:00 – 17:00</p>
+            <p>🕑 Office Hours: Monday – Friday, 09:00 – 17:00</p>
             <p>✉ <a href="mailto:oak@bamanovation.org">oak@bamanovation.org</a></p>
           </div>
         </div>
@@ -299,8 +300,9 @@
   <script>
     // mobile nav
     const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-    toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
-    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('open');links.classList.remove('open')}));
+    const setNav=o=>{toggle.classList.toggle('open',o);links.classList.toggle('open',o);toggle.setAttribute('aria-expanded',o)};
+    toggle.addEventListener('click',()=>setNav(!links.classList.contains('open')));
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setNav(false)));
     // scroll states
     const navbar=document.getElementById('navbar'),backToTop=document.getElementById('back-to-top');
     window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>40);backToTop.classList.toggle('visible',window.scrollY>500)});

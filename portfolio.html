@@ -15,6 +15,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://bamanovation.org/og-image.png">
+  <link rel="canonical" href="https://bamanovation.org/portfolio">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,14 +30,16 @@
         <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#15171c"/><rect x="3.5" y="3.5" width="57" height="57" rx="11" fill="none" stroke="#c8a24b" stroke-width="1.4" opacity="0.55"/><text x="32" y="45.5" text-anchor="middle" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#c8a24b">B</text></svg>
         <span class="logo-word"><b>B</b>amanovation</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Home</a></li>
         <li><a href="/#mission">Our Mission</a></li>
         <li><a href="/#services">Services</a></li>
+        <li><a href="/#team">Our Team</a></li>
         <li><a href="/private-equity">Private Equity</a></li>
         <li><a class="active" href="/portfolio">Portfolio</a></li>
         <li><a href="/#contact">Contact</a></li>
+        <li><a href="/#payment">Pay Now</a></li>
       </ul>
     </div>
   </nav>
@@ -159,12 +162,46 @@
   </section>
 
   <footer class="footer">
-    <div class="container"><p>© 2026 Bamanovation Ltd — All Rights Reserved. · Company No. 16566116 (England &amp; Wales)</p></div>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo"><span class="gold">B</span>AMANOVATION</div>
+          <p>Empowering business growth together. Strategic trade, commerce, and private equity solutions for forward-thinking organisations worldwide.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#mission">Our Mission</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/private-equity">Private Equity</a></li>
+            <li><a href="/#payment">Make a Payment</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="/#contact">Get In Touch</a></li>
+            <li><a href="mailto:oak@bamanovation.org">oak@bamanovation.org</a></li>
+            <li><a href="/#team">Our Team</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          <p>© 2026 Bamanovation Ltd — All Rights Reserved.</p>
+          <p class="footer-legal">Bamanovation Ltd is a private limited company registered in England &amp; Wales, Company No. 16566116.</p>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script>
     const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-    toggle.addEventListener('click',()=>{toggle.classList.toggle('open');links.classList.toggle('open')});
+    const setNav=o=>{toggle.classList.toggle('open',o);links.classList.toggle('open',o);toggle.setAttribute('aria-expanded',o)};
+    toggle.addEventListener('click',()=>setNav(!links.classList.contains('open')));
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setNav(false)));
     const navbar=document.getElementById('navbar');
     window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>40));
     document.querySelectorAll('.accordion-toggle').forEach((h,i)=>{
