@@ -1,0 +1,19 @@
+# Secret scan — anti-theft pass, 13 Sep 2026. Mirrors the gitleaks job on the
+# GitLab repos: scans the working tree with --redact so a match is never printed.
+#
+# continue-on-error FOR NOW so a false positive does not gate anything while the
+# allowlist (.gitleaks.toml) is tuned; drop it once a clean run is confirmed.
+name: secret-scan
+on:
+  push:
+  pull_request:
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run gitleaks
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks detect --no-git --source . --redact -v --config .gitleaks.toml

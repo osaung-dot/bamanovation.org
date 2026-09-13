@@ -1,0 +1,31 @@
+# Secret-scan configuration for the CI `gitleaks` job (see .gitlab-ci.yml).
+#
+# Added 13 Sep 2026 as part of the anti-theft pass across the estate. Extends
+# gitleaks' default ruleset and allowlists only the placeholders this repo commits
+# ON PURPOSE — localhost CI / rehearsal database URLs and `.env.example`.
+#
+# ⚠️ Allowlist only values that are provably NOT secret. Never silence a rule to
+# get a green run.
+
+title = "bamanovation.org secret scan"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Committed placeholders that are not real credentials"
+regexTarget = "line"
+regexes = [
+  '''(mysql|postgres|postgresql)://[^@\s]*@(localhost|127\.0\.0\.1)''',
+]
+paths = [
+  '''(^|/)\.env\.example$''',
+  '''(^|/)node_modules/''',
+  '''(^|/)dist/''',
+  '''(^|/)build/''',
+  '''(^|/)coverage/''',
+  '''(^|/)\.next/''',
+  '''(^|/)src/generated/''',
+  '''package-lock\.json$''',
+  '''(^|/)prisma/migrations/''',
+]
