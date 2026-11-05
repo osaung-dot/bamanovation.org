@@ -2,3 +2,6 @@
 /portfolio/       /portfolio.html        200
 /private-equity   /private-equity.html   200
 /private-equity/  /private-equity.html   200
+/eudaimonia/yangon   /eudaimonia-yangon.html   200
+/eudaimonia/yangon/  /eudaimonia-yangon.html   200
+/yangon              /eudaimonia/yangon        302

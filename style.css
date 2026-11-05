@@ -348,3 +348,20 @@ section{position:relative}
 /* word-based stat values sit smaller than numerals */
 .stat-pill-num.is-text{font-size:clamp(1.3rem,2.5vw,1.75rem);letter-spacing:.01em;line-height:clamp(2rem,4vw,2.8rem)}
 .stat-number.is-text{font-size:clamp(1.2rem,2.3vw,1.6rem)}
+
+/* ---------- Eudaimonia · Yangon ---------- */
+.my{font-family:'Noto Sans Myanmar','Padauk','Myanmar Text',sans-serif;line-height:1.9}
+.page-hero .my{margin-top:1rem;font-size:1rem;color:var(--gold-2)}
+.contact-form h3 .my{font-size:.95rem;color:var(--muted);font-weight:400}
+.yangon{padding:1rem 0 6rem}
+.yangon-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:start}
+.yangon-info p{color:var(--muted)}
+.yangon-steps{margin:1.4rem 0;padding-left:1.2rem;color:var(--muted)}
+.yangon-steps li{margin:.6rem 0}
+.yangon-steps strong{color:var(--ink)}
+.contact-form .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.contact-form select{width:100%;background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--radius-sm);
+  color:var(--ink);padding:.85rem 1rem;font:inherit;font-size:.95rem;margin-bottom:1rem}
+.contact-form select:focus{outline:none;border-color:var(--gold)}
+@media(max-width:860px){.yangon-grid{grid-template-columns:1fr;gap:2rem}}
+@media(max-width:520px){.contact-form .form-row{grid-template-columns:1fr}.contact-form{padding:1.4rem}}
